@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <AppLayout>
-      <ProductForm />
+      <ProductForm @submitForm="formSubmit" />
     </AppLayout>
   </div>
 </template>
@@ -21,6 +21,7 @@ export default {
 <style scoped lang="scss">
 
 .main {
-  background: #E5E5E5;
+  background: rgba(255, 254, 251, 0.8);
+  height: 100vh;
 }
 </style>
