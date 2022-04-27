@@ -1,17 +1,8 @@
 <template>
   <div class="product-form">
-    <div class="product-form__header">
-      <h2 class="product-form__title">
-        Добавление товара
-      </h2>
-      <select id="" class="product-form__header-select" title="">
-        <option value="По умолчанию">
-          По умолчанию
-        </option>
-        <option value="" />
-        <option value="" />
-      </select>
-    </div>
+    <h2 class="product-form__title">
+      Добавление товара
+    </h2>
     <div class="product-form__container">
       <form class="product-form__form" @submit.prevent="submitForm" @change="checkValid">
         <label class="product-form__form_req" for="title">
@@ -19,6 +10,7 @@
           <input
             id="title"
             v-model="title"
+            maxlength="20"
             :class="`${!titleValid ? 'product-form__input_invalid' : ''}`"
             type="text"
             placeholder="Введите наименование товара"
@@ -35,8 +27,9 @@
           <input
             id="link"
             v-model="link"
+            maxlength="50"
             :class="`${!linkValid ? 'product-form__input_invalid' : ''}`"
-            type="text"
+            type="url"
             placeholder="Введите ссылку"
             @input="checkValid"
           >
@@ -47,6 +40,8 @@
           <input
             id="price"
             v-model="price"
+            maxlength="6"
+            type="number"
             :class="`${!priceValid ? 'product-form__input_invalid' : ''}`"
             placeholder="Введите цену"
             @input="checkValid"
@@ -122,10 +117,15 @@ export default {
 
 <style lang="scss">
 .product-form {
+  span {
+    font-weight: 400;
+    font-size: 10px;
+  }
+  padding-top: 32px;
     &__title {
         margin: 0;
+        margin-bottom: 22px;
         font-size: 28px;
-        font-weight: 600;
         color: #3F3F3F;
     }
     &__container {
@@ -134,12 +134,12 @@ export default {
         box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
         border-radius: 4px;
         padding: 24px;
-        border: 1px solid red;
+        box-sizing: border-box;
     }
     &__form {
         text-align: left;
       label {
-        margin-bottom: 16px;
+        margin-bottom: 8px;
         display: block;
         color: #49485E;
       }
@@ -179,6 +179,8 @@ export default {
     margin-top: 4px;
     box-sizing: border-box;
     transition: 0.3s;
+    overflow: hidden;
+    text-overflow: ellipsis;
     &::placeholder {
       color: #B4B4B4;
     }
@@ -205,6 +207,7 @@ export default {
     border: none;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    margin-top: 17px;
     &_disabled {
       background: #EEEEEE;
       box-shadow: none;
@@ -215,39 +218,6 @@ export default {
       box-shadow: inset 1px 1px 10px #333;
     }
   }
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 16px;
-    &-select {
-      width: 100%;
-      max-width: 122px;
-      cursor: pointer;
-      display: flex;
-      justify-content: flex-end;
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-      border: 1px solid transparent;
-      padding: 10px 5px 10px 5px;
-      border-radius: 4px;
-      outline: none;
-      font-size: 12px;
-      color: #000;
-      transition: 0.3s;
-      &:focus {
-        border-color: #3F3F3F;
-      }
-      &::placeholder {
-        color: #B4B4B4;
-      }
-    }
-      option {
-        font-style: normal;
-        font-weight: 400;
-        font-size: 12px;
-        line-height: 15px;
-        color: #B4B4B4;
-      }
-    }
   }
 
 </style>
