@@ -13,6 +13,7 @@ export default {
 <style lang="scss" scoped>
 .container {
     padding: 32px;
+    display: flex;
 }
 @media only screen and (max-width: 480px) {
 .container {

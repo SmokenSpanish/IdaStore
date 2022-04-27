@@ -4,7 +4,7 @@
       <h2 class="product-form__title">
         Добавление товара
       </h2>
-      <select id="" class="product-form__header-select" name="">
+      <select id="" class="product-form__header-select" title="">
         <option value="По умолчанию">
           По умолчанию
         </option>
@@ -14,17 +14,17 @@
     </div>
     <div class="product-form__container">
       <form class="product-form__form" @submit.prevent="submitForm" @change="checkValid">
-        <label class="product-form__form_req" for="name">
+        <label class="product-form__form_req" for="title">
           <span>Наименование товара</span>
           <input
-            id="name"
-            v-model="name"
-            :class="`${!nameValid ? 'product-form__input_invalid' : ''}`"
+            id="title"
+            v-model="title"
+            :class="`${!titleValid ? 'product-form__input_invalid' : ''}`"
             type="text"
             placeholder="Введите наименование товара"
             @input="checkValid"
           >
-          <p v-show="!nameValid" class="product-form__form_req-text">Поле является обязательным</p>
+          <p v-show="!titleValid" class="product-form__form_req-text">Поле является обязательным</p>
         </label>
         <label for="description">
           <span>Описание товара</span>
@@ -49,15 +49,14 @@
             v-model="price"
             :class="`${!priceValid ? 'product-form__input_invalid' : ''}`"
             placeholder="Введите цену"
-            v-bind="price | formattedPrice"
             @input="checkValid"
           >
           <p v-show="!priceValid" class="product-form__form_req-text">Поле является обязательным</p>
         </label>
         <button
           type="submit"
-          :class="`product-form__button ${IsValid ? '' : 'product-form__button_disabled'}`"
-          :disabled="!IsValid"
+          :class="`product-form__button ${allValid ? '' : 'product-form__button_disabled'}`"
+          :disabled="!allValid"
         >
           Добавить товар
         </button>
@@ -75,31 +74,31 @@ export default {
   },
   data () {
     return {
-      name: '',
+      title: '',
       description: '',
       link: '',
       price: '',
-      nameValid: true,
+      titleValid: true,
       linkValid: true,
       priceValid: true,
-      isValid: false
+      allValid: false
     }
   },
   methods: {
     clearForm () {
-      this.name = ''
+      this.title = ''
       this.description = ''
       this.link = ''
       this.price = ''
-      this.nameValid = true
+      this.titleValid = true
       this.linkValid = true
       this.priceValid = true
-      this.isValid = false
+      this.allValid = false
     },
     submitForm () {
       const form = {
         id: Date.now(),
-        name: this.name,
+        title: this.title,
         description: this.description,
         link: this.link,
         price: this.price
@@ -108,20 +107,15 @@ export default {
       this.clearForm()
     },
     checkValid () {
-      this.nameValid = !!this.name.length
+      this.titleValid = !!this.title.length
       this.linkValid = !!this.link.length
       this.priceValid = !!this.price.length
-      if (this.nameValid && this.linkValid && this.priceValid) {
-        this.isValid = true
+      if (this.titleValid && this.linkValid && this.priceValid) {
+        this.allValid = true
       } else {
-        this.isValid = false
+        this.allValid = false
       }
-    },
-    formatPrice (value) {
-      const val = (value / 1).toFixed(2).replace('.', ',')
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
     }
-
   }
 }
 </script>
