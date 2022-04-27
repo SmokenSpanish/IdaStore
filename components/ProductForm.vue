@@ -134,6 +134,7 @@ export default {
         box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
         border-radius: 4px;
         padding: 24px;
+        border: 1px solid red;
     }
     &__form {
         text-align: left;

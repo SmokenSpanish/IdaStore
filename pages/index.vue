@@ -33,10 +33,10 @@ export default {
   data () {
     return {
       allProducts: [{
-        id: 235,
+        id: 2345,
         title: 'Наименование товара',
         description: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-        price: '10000',
+        price: '2000',
         link: 'https://images.unsplash.com/photo-1646974708582-3dced57e0a25?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60'
       }],
       showSuccess: false,
@@ -44,13 +44,13 @@ export default {
     }
   },
   mounted () {
-    const products = JSON.parse(window.localStorage.getItem('products'))
-    if (!products) {
-      window.localStorage.setItem('products', JSON.stringify(this.allProducts))
-    } else {
-      this.allProducts = products
-    }
-    this.isProductsFetched = true
+    // const products = JSON.parse(window.localStorage.getItem('products'))
+    // if (!products) {
+    //   window.localStorage.setItem('products', JSON.stringify(this.allProducts))
+    // } else {
+    //   this.allProducts = products
+    // }
+    // this.isProductsFetched = true
   },
   methods: {
     formSubmit (form) {

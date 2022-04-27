@@ -41,6 +41,11 @@ export default {
       type: String,
       required: true
     }
+  },
+  methods: {
+    handleDelete () {
+      this.$emit('delete', this.id)
+    }
   }
   // filter: {
   //   formattedPrice
@@ -51,6 +56,7 @@ export default {
 <style lang="scss" scoped>
 .card {
   position: relative;
+  margin-left: 16px;
   border-radius: 4px;
   background-color: #FFFEFB;
   color: #3F3F3F;
@@ -64,6 +70,7 @@ export default {
   }
   &__title {
     font-weight: 600;
+    margin: 0;
     margin-bottom: 16px;
     font-weight: 20px;
   }
@@ -74,33 +81,21 @@ export default {
   &__price {
     font-weight: 600;
     font-size: 24px;
+    margin: 0;
   }
   &__delete-btn {
     width: 32px;
     height: 32px;
     border-radius: 10px;
-    background: #FF8484;
+    background: url(/_nuxt/assets/images/delete.svg);
+    border: none;
+    background-position: center;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     position: absolute;
-    border: 1px solid transparent;
     top: -10px;
     right: -10px;
     cursor: pointer;
     transition: 0.3s;
-    &:after {
-      content: '';
-      background: url("../assets/images/delete.svg") no-repeat;
-      width: 16px;
-      height: 16px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
-    }
   }
 }
 </style>
