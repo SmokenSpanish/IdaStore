@@ -52,13 +52,13 @@ export default {
     }
   },
   mounted () {
-    // const products = JSON.parse(window.localStorage.getItem('products'))
-    // if (!products) {
-    //   window.localStorage.setItem('products', JSON.stringify(this.allProducts))
-    // } else {
-    //   this.allProducts = products
-    // }
-    // this.isProductsFetched = true
+    const products = JSON.parse(window.localStorage.getItem('products'))
+    if (!products) {
+      window.localStorage.setItem('products', JSON.stringify(this.allProducts))
+    } else {
+      this.allProducts = products
+    }
+    this.isProductsFetched = true
   },
   methods: {
     formSubmit (form) {
