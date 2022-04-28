@@ -39,11 +39,11 @@
           <input
             id="price"
             v-model="price"
-            maxlength="6"
-            type="number"
+            :type="indicatorChange ? 'number' : 'text'"
             :class="`${!priceValid ? 'product-form__input_invalid' : ''}`"
             placeholder="Введите цену"
-            @input="checkValid"
+            @focus="indicatorChange = true"
+            @blur="indicatorChange = false"
           >
           <p v-show="!priceValid" class="product-form__form_req-text">Поле является обязательным</p>
         </label>
@@ -60,24 +60,35 @@
 </template>
 
 <script>
-import formattedPrice from '../filters/price-format.js'
 export default {
   name: 'ProductForm',
-  filters: {
-    formattedPrice
-  },
   data () {
     return {
       title: '',
       description: '',
       link: '',
-      price: '',
       limit: 120,
+      realNumber: 0,
+      indicatorChange: false,
       titleValid: true,
       linkValid: true,
       priceValid: true,
       allValid: false
     }
+  },
+  computed: {
+    price: {
+      get () {
+        return this.indicatorChange ? this.realNumber : this.realNumber.toLocaleString()
+      },
+      set (value) {
+        this.realNumber = +value.replace(/\s/g, '')
+        this.$emit('input', this.realNumber)
+      }
+    }
+  },
+  created () {
+    this.realNumber = this.value || ''
   },
   methods: {
     clearForm () {
@@ -104,7 +115,7 @@ export default {
     checkValid () {
       this.titleValid = !!this.title.length
       this.linkValid = !!this.link.length
-      this.priceValid = !!this.price.length
+      this.priceValid = !!this.realNumber
       if (this.titleValid && this.linkValid && this.priceValid) {
         this.allValid = true
       } else {
@@ -188,7 +199,7 @@ export default {
       border-color:#3F3F3F;
     }
   }
-  &__input-invalid {
+  &__input_invalid {
     border-color: #FF8484 !important;
   }
   textarea {
