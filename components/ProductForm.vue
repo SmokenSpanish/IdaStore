@@ -20,16 +20,15 @@
         </label>
         <label for="description">
           <span>Описание товара</span>
-          <textarea id="description" v-model="description" placeholder="Введите описание товара" />
+          <textarea id="description" v-model="description" placeholder="Введите описание товара" :maxlength="limit" />
         </label>
         <label class="product-form__form_req" for="link">
           <span>Ссылка на изображение товара</span>
           <input
             id="link"
             v-model="link"
-            maxlength="50"
             :class="`${!linkValid ? 'product-form__input_invalid' : ''}`"
-            type="url"
+            type="text"
             placeholder="Введите ссылку"
             @input="checkValid"
           >
@@ -73,6 +72,7 @@ export default {
       description: '',
       link: '',
       price: '',
+      limit: 120,
       titleValid: true,
       linkValid: true,
       priceValid: true,

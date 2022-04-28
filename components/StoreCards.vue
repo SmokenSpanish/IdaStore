@@ -49,9 +49,6 @@ export default {
       this.$emit('delete', this.id)
     }
   }
-  // filter: {
-  //   formattedPrice
-  // }
 }
 </script>
 

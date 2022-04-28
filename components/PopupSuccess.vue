@@ -33,7 +33,7 @@ export default {
     }
 }
 .slide-down-enter-active, .slide-down-leave-active {
-    opaticy: 1;
+    opacity: 1;
 }
 .slide-down-enter, .slide-down-leave-to {
     opacity: 0;
